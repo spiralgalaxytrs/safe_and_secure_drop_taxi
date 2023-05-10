@@ -5,6 +5,10 @@
   p {
     font-size: 13px;
   }
+
+  .top-header-area{
+    display: none;
+  }
   .ptb-110 {
     padding-top: 60px;
     padding-bottom: 60px;
