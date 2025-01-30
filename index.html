@@ -364,8 +364,8 @@
                                 </div>
                                 <h3><a href="#book">
 
-                                    ONE WAY - RS.13 <br>
-                                    ROUND TRIP - RS.12 <br>
+                                    ONE WAY - RS.14 <br>
+                                    ROUND TRIP - RS.13 <br>
                                     AIRPORT PICKUP - RS.13</a></h3>
                                
                             </div>
@@ -402,8 +402,8 @@
                                 </div>
                                 <h3><a href="#book">
 
-                                    ONE WAY - RS.18 <br>
-                                    ROUND TRIP - RS.16 <br>
+                                    ONE WAY - RS.19 <br>
+                                    ROUND TRIP - RS.18 <br>
                                     AIRPORT PICKUP - RS.18</a></h3>
                                
                             </div>
@@ -913,6 +913,7 @@
                     headers: {"Content-Type": "application/json"}, 
                     body: JSON.stringify({chat_id, text}), 
                 });
+                console.log("13525256----->",sendMessage);
                 const messageStatus = document.querySelector('#status');
                 if (sendMessage.ok) 
                     messageStatus.textContent = "Message Sent!";
