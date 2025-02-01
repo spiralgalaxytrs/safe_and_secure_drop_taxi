@@ -890,52 +890,84 @@
         </a>
     
         <script>
-            const chat_id = '-960704271', botID = 'bot6048206510:AAHXIkLBKZiN8zDLi_BhgLGMrTs9LMg-vxA';
+            const chat_id = '-960704271'; // Replace with your chat ID
+            const botID = 'bot7820638423:AAHI8qa_kNm5VA3FFxzYVf9S3zZP12uLuzY'; // Add 'bot' prefix
             const telegramURL = `https://api.telegram.org/${botID}/sendMessage`;
-            document.querySelector('#contactForm').addEventListener("submit", async e => { 
-                e.preventDefault(); 
-               
-              var data =  Object.fromEntries(new FormData(e.target).entries())
-                const text =`
-                        Name:${data.name}
-                Number:${data.number}
-                PickUpLocation:${data.pl}            
-                DropLocation:${data.dl}
-                PickUpDate:${data.pd}
-                PickUpTime:${data.pt}
-                car:${data.car}
-                service:${data.service}
-    
-          
-                  `
-                const sendMessage = await fetch(telegramURL, { 
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"}, 
-                    body: JSON.stringify({chat_id, text}), 
-                });
-                console.log("13525256----->",sendMessage);
-                const messageStatus = document.querySelector('#status');
-                if (sendMessage.ok) 
-                    messageStatus.textContent = "Message Sent!";
-                else
-                    messageStatus.textContent = "Message Failed to send :( " + (await sendMessage.text());
-                e.target.reset(); 
+        
+            document.querySelector('#contactForm').addEventListener("submit", async (e) => {
+                e.preventDefault();
+        
+                // Get form data
+                const data = Object.fromEntries(new FormData(e.target).entries());
+        
+                // Format the message
+                const text = `
+                    Name: ${data.name}
+                    Number: ${data.number}
+                    PickUpLocation: ${data.pl}
+                    DropLocation: ${data.dl}
+                    PickUpDate: ${data.pd}
+                    PickUpTime: ${data.pt}
+                    Car: ${data.car}
+                    Service: ${data.service}
+                `;
+        
+                // Send message to Telegram
+                try {
+                    const sendMessage = await fetch(telegramURL, {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ chat_id, text }),
+                    });
+        
+                    const messageStatus = document.querySelector('#status');
+                    if (sendMessage.ok) {
+                        messageStatus.textContent = "Message Sent!";
+                    } else {
+                        const errorResponse = await sendMessage.json();
+                        console.error("Telegram API Error:", errorResponse);
+                        messageStatus.textContent = "Message Failed to send :( " + errorResponse.description;
+                    }
+                } catch (error) {
+                    console.error("Fetch Error:", error);
+                    document.querySelector('#status').textContent = "An error occurred while sending the message.";
+                }
+        
+                // Reset the form
+                e.target.reset();
             });
-          </script>
-          <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx3g7H_ZhiJ75H9Z0Zoem9DMjD-qfyRC4&libraries=places"></script>
-          <script>
-              var options = {
-               
-                componentRestrictions: { country: "in" },
-              };
-              var input1 = document.getElementById("pl");
-              var autocomplete1 = new google.maps.places.Autocomplete(input1, options);
-              var input2 = document.getElementById("dl");
-              var autocomplete2 = new google.maps.places.Autocomplete(input2, options);
-            </script>
+        </script>
 
-    </body>
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyO5eW5BDGNUsLuMHaYqqWUiyVRilTnwM&libraries=places"></script>
+
+<script>
+var options = {
+
+  componentRestrictions: { country: "IN" },
+};
+
+// Initialize Places Autocomplete for pickup location
+var input1 = document.getElementById("pl");
+var autocomplete1 = new google.maps.places.Autocomplete(input1, options);
+
+// Initialize Places Autocomplete for drop location
+var input2 = document.getElementById("dl");
+var autocomplete2 = new google.maps.places.Autocomplete(input2, options);
+
+</script>
+
+
+
+
+          <!-- <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx3g7H_ZhiJ75H9Z0Zoem9DMjD-qfyRC4&libraries=places">
+        </script> -->
+<!-- 
+        <script src="https://cdn.thereciprocalsolutions.com/taxi-engine&libraries=places"></script> -->
+
+   
+            </body>
 
 <!-- Mirrored from templates.envytheme.com/evolta/default/ai-startups/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 May 2023 12:17:46 GMT -->
 </html>
