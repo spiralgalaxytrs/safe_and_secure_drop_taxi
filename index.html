@@ -250,6 +250,7 @@
                                         <div class="form-group">
                                             <input type="text" name="pl" id="pl" required data-error="Please enter your Pickup Location" class="form-control" placeholder="Pickup Location">
                                             <div class="help-block with-errors"></div>
+                                            <div id="suggestions" class="suggestions"></div>
                                         </div>
                                     </div>
 
@@ -257,6 +258,7 @@
                                         <div class="form-group">
                                             <input type="text" name="dl" id="dl" class="form-control" required data-error="Please enter your Drop Location" placeholder="Dorp Location">
                                             <div class="help-block with-errors"></div>
+                                            <div id="suggestions" class="suggestions"></div>
                                         </div>
                                     </div>
 
@@ -366,7 +368,7 @@
 
                                     ONE WAY - RS.14 <br>
                                     ROUND TRIP - RS.13 <br>
-                                    AIRPORT PICKUP - RS.13</a></h3>
+                                    DRIVER ALLOWANCE - RS.400</a></h3>
                                
                             </div>
                         </div>
@@ -383,9 +385,9 @@
                                 </div>
                                 <h3><a href="#book">
 
-                                    ONE WAY - RS.13 <br>
-                                    ROUND TRIP - RS.12 <br>
-                                    AIRPORT PICKUP - RS.13</a></h3>
+                                    ONE WAY - RS.14 <br>
+                                    ROUND TRIP - RS.13 <br>
+                                    DRIVER ALLOWANCE - RS.400</a></h3>
                                
                             </div>
                         </div>
@@ -404,7 +406,7 @@
 
                                     ONE WAY - RS.19 <br>
                                     ROUND TRIP - RS.18 <br>
-                                    AIRPORT PICKUP - RS.18</a></h3>
+                                    DRIVER ALLOWANCE - RS.500</a></h3>
                                
                             </div>
                         </div>
@@ -420,9 +422,9 @@
                                 </div>
                                 <h3><a href="#book">
 
-                                    ONE WAY - RS.18 <br>
-                                    ROUND TRIP - RS.16 <br>
-                                    AIRPORT PICKUP - RS.18</a></h3>
+                                    ONE WAY - RS.19 <br>
+                                    ROUND TRIP - RS.18 <br>
+                                    DRIVER ALLOWANCE - RS.500</a></h3>
                                
                             </div>
                         </div>
@@ -938,33 +940,55 @@
             });
         </script>
 
-<!-- <script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyO5eW5BDGNUsLuMHaYqqWUiyVRilTnwM&libraries=places"></script>
-
-<script> -->
-var options = {
-
-  componentRestrictions: { country: "IN" },
-};
-
-// Initialize Places Autocomplete for pickup location
-var input1 = document.getElementById("pl");
-var autocomplete1 = new google.maps.places.Autocomplete(input1, options);
-
-// Initialize Places Autocomplete for drop location
-var input2 = document.getElementById("dl");
-var autocomplete2 = new google.maps.places.Autocomplete(input2, options);
-
+<script
+src="https://api.thereciprocalsolutions.com/api/v1/getPlaces?libraries=places">
 </script>
 
 
+<script>
+    const input = document.getElementById("pl");
+    const suggestionsContainer = document.getElementById("suggestions");
 
+    input.addEventListener("input", function() {
+        const query = input.value;
 
-          <!-- <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx3g7H_ZhiJ75H9Z0Zoem9DMjD-qfyRC4&libraries=places">
-        </script> -->
-<!-- 
-        <script src="https://cdn.thereciprocalsolutions.com/taxi-engine&libraries=places"></script> -->
+        // Clear previous suggestions
+        suggestionsContainer.innerHTML = '';
+
+        if (query.length < 2) {
+            return; 
+        }
+
+        // Fetch city names from the API
+        fetch(`https://api.thereciprocalsolutions.com/api/v1/getPlaces?query=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+                // Assuming the API returns an array of city names
+                if (data && Array.isArray(data)) {
+                    data.forEach(city => {
+                        const div = document.createElement("div");
+                        div.classList.add("suggestion-item");
+                        div.textContent = city; // Adjust based on the actual response structure
+                        div.onclick = function() {
+                            input.value = city; // Set the input value to the selected city
+                            suggestionsContainer.innerHTML = ''; // Clear suggestions
+                        };
+                        suggestionsContainer.appendChild(div);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener("click", function(event) {
+        if (!suggestionsContainer.contains(event.target) && event.target !== input) {
+            suggestionsContainer.innerHTML = '';
+        }
+    });
+</script>
 
    
             </body>
