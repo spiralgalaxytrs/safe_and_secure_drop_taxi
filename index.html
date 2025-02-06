@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
         <link rel="stylesheet" href="assets/css/dark-style.css">
-
+        <link rel="stylesheet" href="https://cdn.thereciprocalsolutions.com/taxi-engine-css">
         <title>Safe And Secure Drop Taxi | One Way Taxi | Drop taxi | Outstation taxi</title>
 
         <link rel="icon" type="image/png" href="assets/img/logo.jpeg">
@@ -944,50 +944,16 @@
 src="https://api.thereciprocalsolutions.com/api/v1/getPlaces?libraries=places">
 </script>
 
-
+ <script src="https://cdn.thereciprocalsolutions.com/taxi-engine"></script>
 <script>
-    const input = document.getElementById("pl");
-    const suggestionsContainer = document.getElementById("suggestions");
-
-    input.addEventListener("input", function() {
-        const query = input.value;
-
-        // Clear previous suggestions
-        suggestionsContainer.innerHTML = '';
-
-        if (query.length < 2) {
-            return; 
-        }
-
-        // Fetch city names from the API
-        fetch(`https://api.thereciprocalsolutions.com/api/v1/getPlaces?query=${encodeURIComponent(query)}`)
-            .then(response => response.json())
-            .then(data => {
-                // Assuming the API returns an array of city names
-                if (data && Array.isArray(data)) {
-                    data.forEach(city => {
-                        const div = document.createElement("div");
-                        div.classList.add("suggestion-item");
-                        div.textContent = city; // Adjust based on the actual response structure
-                        div.onclick = function() {
-                            input.value = city; // Set the input value to the selected city
-                            suggestionsContainer.innerHTML = ''; // Clear suggestions
-                        };
-                        suggestionsContainer.appendChild(div);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
-    });
-
-    // Hide suggestions when clicking outside
-    document.addEventListener("click", function(event) {
-        if (!suggestionsContainer.contains(event.target) && event.target !== input) {
-            suggestionsContainer.innerHTML = '';
-        }
-    });
+    try {
+        const fromLocation = document.querySelector("#pl");
+        const toLocation = document.querySelector("#dl");
+        const taxiEngine = new TaxiEngine(fromLocation, toLocation);
+     
+    }catch(err){
+        console.log(err.message);
+    }
 </script>
 
    
