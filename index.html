@@ -216,98 +216,92 @@
             </div>
         </div>
         <!-- End Overview Features Area -->
+ 
         <section id="book" class="contact-area ptb-110">
             <div class="container">
-                <div class="section-title">
-                    <span>BOOK NOW
-                    </span>
-                    <h2>What are you waiting for? Just fill it!
-                    </h2>
-                 </div>
-
+                <div class="section-title text-center">
+                    <span>BOOK NOW</span>
+                    <h2>What are you waiting for? Just fill it!</h2>
+                </div>
+    
                 <div class="row align-items-center">
-                    
-
-                    <div class="col-lg-12 col-md-12" >
+                    <div class="col-lg-12 col-md-12">
                         <div class="contact-form">
                             <form id="contactForm" class="contact-form">
                                 <div class="row">
+                                    <!-- Name -->
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Name">
-                                            <div class="help-block with-errors"></div>
+                                            <input type="text" name="name" id="name" class="form-control" required placeholder="Name">
                                         </div>
                                     </div>
-
+    
+                                    <!-- Number -->
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="number" name="number" id="number" class="form-control" required data-error="Please enter your number" placeholder="Number">
-                                            <div class="help-block with-errors"></div>
+                                            <input type="number" name="number" id="number" class="form-control" required placeholder="Number">
                                         </div>
                                     </div>
-
+    
+                                    <!-- Pickup Location -->
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="pl" id="pl" required data-error="Please enter your Pickup Location" class="form-control" placeholder="Pickup Location">
-                                            <div class="help-block with-errors"></div>
-                                            <div id="suggestions" class="suggestions"></div>
+                                            <input type="text" name="pl" id="pl" required class="form-control" placeholder="Pickup Location">
                                         </div>
                                     </div>
-
+    
+                                    <!-- Drop Location -->
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="dl" id="dl" class="form-control" required data-error="Please enter your Drop Location" placeholder="Dorp Location">
-                                            <div class="help-block with-errors"></div>
-                                            <div id="suggestions" class="suggestions"></div>
+                                            <input type="text" name="dl" id="dl" class="form-control" required placeholder="Drop Location">
                                         </div>
                                     </div>
-
+    
+                                    <!-- Pickup Date -->
                                     <div class="col-lg-6 col-md-12">
-                                        <label for="">Pickup Date</label>
-
+                                        <label for="pd">Pickup Date</label>
                                         <div class="form-group">
-                                            <input type="date" name="pd" id="pd" class="form-control" required data-error="Please enter your date" placeholder="date">
-                                            <div class="help-block with-errors"></div>
+                                            <input type="date" name="pd" id="pd" class="form-control" required>
                                         </div>
                                     </div>
-
+    
+                                    <!-- Pickup Time -->
                                     <div class="col-lg-6 col-md-12">
-                                        <label for="">Pickup Time</label>
+                                        <label for="pt">Pickup Time</label>
                                         <div class="form-group">
-                                            <input type="time" name="pt" id="pt" class="form-control" required data-error="Please enter your time" placeholder="time">
-                                            <div class="help-block with-errors"></div>
+                                            <input type="time" name="pt" id="pt" class="form-control" required>
                                         </div>
                                     </div>
-
+    
+                                    <!-- Car -->
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="car" id="car" list="car1" class="form-control" required data-error="Please enter your car" placeholder="Car">
+                                            <input type="text" name="car" id="car" list="car1" class="form-control" required placeholder="Car">
                                             <datalist id="car1">
                                                 <option value="Sedan">
                                                 <option value="SUV">
                                                 <option value="Prime Sedan">
                                                 <option value="Prime SUV">
                                             </datalist>
-                                            <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-
+    
+                                    <!-- Service -->
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <input type="service" name="service" id="service" list="ser" class="form-control" required data-error="Please enter your service" placeholder="Service">
+                                            <input type="text" name="service" id="service" list="ser" class="form-control" required placeholder="Service">
                                             <datalist id="ser">
                                                 <option value="One Way Taxi">
                                                 <option value="Round Trip">
                                                 <option value="Airport pickup">
                                             </datalist>
-                                            <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-
-                                    <div class="col-lg-12 col-md-12" style="display: flex;
-                                    justify-content: center;">
-                                        <button type="submit" id="status" class="btn btn-primary">Check Price</button>
-                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+    
+                                    <!-- Submit Button -->
+                                    <div class="col-lg-12 col-md-12 text-center">
+                                        <button type="submit" id="status" class="btn btn-primary">Send Enquiry</button>
+                                        <div id="msgSubmit" class="h4 text-center mt-3"></div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -315,28 +309,24 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
+    
+                <!-- Contact Info -->
+                <div class="row mt-5">
                     <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="contact-info-box">
+                        <div class="contact-info-box text-center">
                             <div class="icon">
                                 <i class='bx bx-envelope'></i>
                             </div>
-
                             <h3>Email Here</h3>
-                            <p>                                    <a href="">safeandsecuredroptaxi.com@gmail.com</a>
-                            </p>
+                            <p><a href="mailto:safeandsecuredroptaxi.com@gmail.com">safeandsecuredroptaxi.com@gmail.com</a></p>
                         </div>
                     </div>
-
-                    
-
+    
                     <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-0 offset-md-3 offset-sm-3">
-                        <div class="contact-info-box">
+                        <div class="contact-info-box text-center">
                             <div class="icon">
                                 <i class='bx bx-phone-call'></i>
                             </div>
-
                             <h3>Call Here</h3>
                             <p><a href="tel:+918248134103">+91 8248134103</a></p>
                         </div>
@@ -893,29 +883,31 @@
         </a>
     
         <script>
-            const chat_id = '-960704271'; // Replace with your chat ID
-            const botID = 'bot7820638423:AAHI8qa_kNm5VA3FFxzYVf9S3zZP12uLuzY'; // Add 'bot' prefix
-            const telegramURL = `https://api.telegram.org/${botID}/sendMessage`;
+            const chat_id = '-960704271'; // Your Telegram chat ID
+            const botToken = '7820638423:AAHI8qa_kNm5VA3FFxzYVf9S3zZP12uLuzY'; // Telegram Bot Token
+            const telegramURL = `https://api.telegram.org/bot${botToken}/sendMessage`;
         
             document.querySelector('#contactForm').addEventListener("submit", async (e) => {
                 e.preventDefault();
         
                 // Get form data
-                const data = Object.fromEntries(new FormData(e.target).entries());
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
         
                 // Format the message
                 const text = `
-                    Name: ${data.name}
-                    Number: ${data.number}
-                    PickUpLocation: ${data.pl}
-                    DropLocation: ${data.dl}
-                    PickUpDate: ${data.pd}
-                    PickUpTime: ${data.pt}
-                    Car: ${data.car}
-                    Service: ${data.service}
+     New Booking Request:
+        -------------------------
+         Name: ${data.name}
+         Number: ${data.number}
+         Pickup Location: ${data.pl}
+         Drop Location: ${data.dl}
+         Pickup Date: ${data.pd}
+         Pickup Time: ${data.pt}
+         Car Type: ${data.car}
+         Service: ${data.service}
                 `;
         
-                // Send message to Telegram
                 try {
                     const sendMessage = await fetch(telegramURL, {
                         method: 'POST',
@@ -925,21 +917,26 @@
         
                     const messageStatus = document.querySelector('#status');
                     if (sendMessage.ok) {
-                        messageStatus.textContent = "Message Sent!";
+                        messageStatus.textContent = "Message Sent Successfully!";
+                        messageStatus.classList.add('btn-success');
+                        messageStatus.classList.remove('btn-primary');
                     } else {
                         const errorResponse = await sendMessage.json();
                         console.error("Telegram API Error:", errorResponse);
-                        messageStatus.textContent = "Message Failed to send :( " + errorResponse.description;
+                        messageStatus.textContent = "Failed to Send: " + errorResponse.description;
+                        messageStatus.classList.add('btn-danger');
+                        messageStatus.classList.remove('btn-primary');
                     }
                 } catch (error) {
                     console.error("Fetch Error:", error);
-                    document.querySelector('#status').textContent = "An error occurred while sending the message.";
+                    document.querySelector('#status').textContent = "An error occurred while sending.";
                 }
         
                 // Reset the form
                 e.target.reset();
             });
         </script>
+        
 
 <script
 src="https://api.thereciprocalsolutions.com/api/v1/getPlaces?libraries=places">
@@ -955,6 +952,45 @@ src="https://api.thereciprocalsolutions.com/api/v1/getPlaces?libraries=places">
     }catch(err){
         console.log(err.message);
     }
+    
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = {
+            name: document.getElementById('name').value,
+            mobile: document.getElementById('number').value,
+            from: document.getElementById('pl').value,
+            to: document.getElementById('dl').value,
+            pickupDateTime: document.getElementById('pd').value + ' ' + document.getElementById('pt').value,
+            car: document.getElementById('car').value,
+            service: document.getElementById('service').value,
+            email: "safeandsecuredroptaxi.com@gmail.com" // Optional: Replace if you add an email input
+        };
+
+        // Show sending message
+        const msgSubmit = document.getElementById('msgSubmit');
+        msgSubmit.style.color = "black";
+        msgSubmit.innerText = "Sending enquiry...";
+
+            const result = await response.json();
+
+            if (response.ok) {
+                msgSubmit.style.color = "green";
+                msgSubmit.innerText = "Enquiry Sent Successfully!";
+                document.getElementById('contactForm').reset();
+            } else {
+                msgSubmit.style.color = "red";
+                msgSubmit.innerText = "Error: " + result.error;
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            msgSubmit.style.color = "red";
+            msgSubmit.innerText = "Error sending enquiry. Please try again later.";
+        }
+    });
+
 </script>
 
    
