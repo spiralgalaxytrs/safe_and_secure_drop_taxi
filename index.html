@@ -883,8 +883,8 @@
         </a>
     
         <script>
-            const chat_id = '-960704271'; // Your Telegram chat ID
-            const botToken = '7820638423:AAHI8qa_kNm5VA3FFxzYVf9S3zZP12uLuzY'; // Telegram Bot Token
+            const chat_id = '-1003444533527'; // Your Telegram chat ID
+            const botToken = '8411379041:AAElkFpdBaLVhl3QWWerMFr4JVTLc2QG35Q'; // Telegram Bot Token
             const telegramURL = `https://api.telegram.org/bot${botToken}/sendMessage`;
         
             document.querySelector('#contactForm').addEventListener("submit", async (e) => {
@@ -952,45 +952,6 @@ src="https://api.thereciprocalsolutions.com/api/v1/getPlaces?libraries=places">
     }catch(err){
         console.log(err.message);
     }
-    
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        // Collect form data
-        const formData = {
-            name: document.getElementById('name').value,
-            mobile: document.getElementById('number').value,
-            from: document.getElementById('pl').value,
-            to: document.getElementById('dl').value,
-            pickupDateTime: document.getElementById('pd').value + ' ' + document.getElementById('pt').value,
-            car: document.getElementById('car').value,
-            service: document.getElementById('service').value,
-            email: "safeandsecuredroptaxi.com@gmail.com" // Optional: Replace if you add an email input
-        };
-
-        // Show sending message
-        const msgSubmit = document.getElementById('msgSubmit');
-        msgSubmit.style.color = "black";
-        msgSubmit.innerText = "Sending enquiry...";
-
-            const result = await response.json();
-
-            if (response.ok) {
-                msgSubmit.style.color = "green";
-                msgSubmit.innerText = "Enquiry Sent Successfully!";
-                document.getElementById('contactForm').reset();
-            } else {
-                msgSubmit.style.color = "red";
-                msgSubmit.innerText = "Error: " + result.error;
-            }
-
-        } catch (error) {
-            console.error("Error:", error);
-            msgSubmit.style.color = "red";
-            msgSubmit.innerText = "Error sending enquiry. Please try again later.";
-        }
-    });
-
 </script>
 
    
