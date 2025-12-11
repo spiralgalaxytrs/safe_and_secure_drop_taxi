@@ -835,7 +835,8 @@
         <script src="assets/js/odometer.min.js"></script>
         <script src="assets/js/jquery.ajaxchimp.min.js"></script>
         <script src="assets/js/form-validator.min.js"></script>
-        <script src="assets/js/contact-form-script.js"></script>
+        <!-- Removed contact-form-script.js to prevent duplicate form submissions - using custom Telegram handler instead -->
+        <!-- <script src="assets/js/contact-form-script.js"></script> -->
         <script src="assets/js/main.js"></script>
         <style>
             .float {
@@ -887,8 +888,21 @@
             const botToken = '8411379041:AAElkFpdBaLVhl3QWWerMFr4JVTLc2QG35Q'; // Telegram Bot Token
             const telegramURL = `https://api.telegram.org/bot${botToken}/sendMessage`;
         
-            document.querySelector('#contactForm').addEventListener("submit", async (e) => {
+            // Prevent duplicate submissions by removing any existing listeners first
+            const form = document.querySelector('#contactForm');
+            const newForm = form.cloneNode(true);
+            form.parentNode.replaceChild(newForm, form);
+            
+            newForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
+                e.stopPropagation(); // Prevent event bubbling
+        
+                const submitButton = document.querySelector('#status');
+                const originalText = submitButton.textContent;
+                
+                // Disable button to prevent double submission
+                submitButton.disabled = true;
+                submitButton.textContent = "Sending...";
         
                 // Get form data
                 const formData = new FormData(e.target);
@@ -920,20 +934,28 @@
                         messageStatus.textContent = "Message Sent Successfully!";
                         messageStatus.classList.add('btn-success');
                         messageStatus.classList.remove('btn-primary');
+                        // Reset the form
+                        e.target.reset();
                     } else {
                         const errorResponse = await sendMessage.json();
                         console.error("Telegram API Error:", errorResponse);
                         messageStatus.textContent = "Failed to Send: " + errorResponse.description;
                         messageStatus.classList.add('btn-danger');
                         messageStatus.classList.remove('btn-primary');
+                        // Re-enable button on error
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
                     }
                 } catch (error) {
                     console.error("Fetch Error:", error);
-                    document.querySelector('#status').textContent = "An error occurred while sending.";
+                    const messageStatus = document.querySelector('#status');
+                    messageStatus.textContent = "An error occurred while sending.";
+                    messageStatus.classList.add('btn-danger');
+                    messageStatus.classList.remove('btn-primary');
+                    // Re-enable button on error
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
                 }
-        
-                // Reset the form
-                e.target.reset();
             });
         </script>
         
